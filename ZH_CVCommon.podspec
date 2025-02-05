@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
   # 证书信息，创建仓库时选择的
-  spec.license      = { :type => "MIT", :file => "LICENSE" }
+  spec.license      = { :type => "MIT", :file => "/Users/zhanghaibin/Documents/马甲包/ZH_CVCommon/LICENSE" }
 
   spec.author             = { "mard002" => "841766048@qq.com" }
    # 开发平台，当时我们设置的是13.0
