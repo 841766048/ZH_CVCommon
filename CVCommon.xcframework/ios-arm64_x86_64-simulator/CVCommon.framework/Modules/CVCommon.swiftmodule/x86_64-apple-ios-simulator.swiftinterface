@@ -1,0 +1,305 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name CVCommon
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Alamofire
+@_exported import CVCommon
+import CocoaLumberjack
+import Combine
+import CombineExt
+import DZNEmptyDataSet
+import Foundation
+import Localize_Swift
+import Moya
+import ObjectiveC
+import SSZipArchive
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol EmptyDataSetable : AnyObject {
+  func title(forEmptyDataSet scrollView: UIKit.UIScrollView) -> Foundation.NSAttributedString?
+  func customView(forEmptyDataSet scrollView: UIKit.UIScrollView) -> UIKit.UIView?
+  func verticalOffset(forEmptyDataSet scrollView: UIKit.UIScrollView!) -> CoreFoundation.CGFloat
+  func emptyDataSetShouldBeForced(toDisplay scrollView: UIKit.UIScrollView) -> Swift.Bool
+}
+extension EmptyDataSetable where Self : ObjectiveC.NSObject {
+  public func observerEmptyState(for scrollView: UIKit.UIScrollView)
+}
+extension EmptyDataSetable {
+  public func title(forEmptyDataSet scrollView: UIKit.UIScrollView) -> Foundation.NSAttributedString?
+  public func customView(forEmptyDataSet scrollView: UIKit.UIScrollView) -> UIKit.UIView?
+  public func emptyDataSetShouldBeForced(toDisplay scrollView: UIKit.UIScrollView) -> Swift.Bool
+  public func verticalOffset(forEmptyDataSet scrollView: UIKit.UIScrollView!) -> CoreFoundation.CGFloat
+}
+extension UIKit.UIScrollView {
+  @_Concurrency.MainActor @preconcurrency public var shouldDisplayEmptyData: Swift.Bool {
+    get
+    set
+  }
+}
+public struct Log {
+}
+extension Log {
+  public static func configure()
+}
+extension Log {
+  public static func debug(_ message: Any, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line)
+  public static func info(_ message: Any, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line)
+  public static func warn(_ message: Any, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line)
+  public static func verbose(_ message: Any, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line)
+  public static func error(_ message: Any, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line)
+}
+public class Network {
+  public static let `default`: Network
+  public init()
+  @objc deinit
+}
+extension UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency public var viewWillAppearPublisher: CombineExt.PassthroughRelay<Swift.Void>? {
+    get
+  }
+}
+public typealias APIParameters = Any
+public typealias APIMethod = Moya.Method
+public typealias APITask = Moya.Task
+public typealias APITarget = Moya.TargetType
+public typealias APIMultiTarget = Moya.MultiTarget
+public typealias APIPlugin = Moya.PluginType
+public typealias APIProvider<T> = Moya.MoyaProvider<T> where T : Moya.TargetType
+extension Moya.MoyaProvider : NetworkCompatible {
+}
+extension NetworkWrapper where Base : Moya.MoyaProvider<Moya.MultiTarget> {
+  @discardableResult
+  public func requestPublisher<C>(_ type: C.Type, target: any Moya.TargetType) -> Combine.AnyPublisher<C, any Swift.Error> where C : Swift.Decodable, C : Swift.Encodable
+  @discardableResult
+  public func requestWithProgressPublisher<C>(_ type: C.Type, target: any Moya.TargetType) -> Combine.AnyPublisher<C, any Swift.Error> where C : Swift.Decodable, C : Swift.Encodable
+  public func request<C>(_ type: C.Type, target: any Moya.TargetType, progress: Moya.ProgressBlock? = .none, callbackQueue: Dispatch.DispatchQueue? = .main, completion: @escaping (Swift.Result<C, any Swift.Error>) -> Swift.Void) where C : Swift.Decodable, C : Swift.Encodable
+  public func request(target: any Moya.TargetType, callbackQueue: Dispatch.DispatchQueue? = .main, progress: Moya.ProgressBlock? = .none, completion: @escaping (Swift.Result<Any, any Swift.Error>) -> Swift.Void)
+}
+extension Moya.Response : NetworkCompatible {
+}
+public struct CVWrapper<Base> {
+  public let base: Base
+}
+public protocol CVCompatible : AnyObject {
+}
+public protocol CVCompatibleValue {
+}
+extension CVCompatible {
+  public var cv: CVWrapper<Self> {
+    get
+    set
+  }
+}
+extension CVCompatibleValue {
+  public var cv: CVWrapper<Self> {
+    get
+    set
+  }
+}
+public enum NetworkError : Foundation.LocalizedError {
+  case invalidResponse
+  case badUrl
+  case decodingError
+  case message(code: Swift.Int, message: Swift.String?)
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension NetworkWrapper where Base : BaseRequest {
+  public func request<C>(_ type: C.Type, progress: Moya.ProgressBlock? = .none, completion: @escaping (Swift.Result<C, any Swift.Error>) -> Swift.Void) where C : Swift.Decodable, C : Swift.Encodable
+  @discardableResult
+  public func requestPublisher<C>(_ type: C.Type) -> Combine.AnyPublisher<C, any Swift.Error> where C : Swift.Decodable, C : Swift.Encodable
+  @discardableResult
+  public func requestWithProgressPublisher<C>(_ type: C.Type) -> Combine.AnyPublisher<C, any Swift.Error> where C : Swift.Decodable, C : Swift.Encodable
+}
+extension NetworkWrapper where Base : BaseRequest {
+  public func request(_ progress: Moya.ProgressBlock? = .none, completion: @escaping (Swift.Result<Any, any Swift.Error>) -> Swift.Void)
+  public func requestPublisher() -> Combine.AnyPublisher<Any, any Swift.Error>
+  public func requestWithProgressPublisher() -> Combine.AnyPublisher<Any, any Swift.Error>
+}
+extension Swift.KeyedDecodingContainer {
+  public func decode(_ type: Swift.Bool.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> Swift.Bool
+  public func decode(_ type: Swift.String.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> Swift.String
+  public func decode(_ type: Swift.Double.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> Swift.Double
+  public func decode(_ type: Swift.Float.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> Swift.Float
+  public func decode(_ type: CoreFoundation.CGFloat.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> CoreFoundation.CGFloat
+  public func decode(_ type: Swift.Int.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> Swift.Int
+  public func decode(_ type: Swift.UInt.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> Swift.UInt
+  public func decode(_ type: Swift.Int32.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> Swift.Int32
+  public func decode(_ type: Swift.Int64.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> Swift.Int64
+  public func decode<T>(_ type: T.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> T where T : Swift.Decodable
+  public func decodeIfPresent(_ type: Swift.Bool.Type, forKey key: K) throws -> Swift.Bool?
+  public func decodeIfPresent(_ type: Swift.String.Type, forKey key: K) throws -> Swift.String?
+  public func decodeIfPresent(_ type: Swift.Double.Type, forKey key: K) throws -> Swift.Double?
+  public func decodeIfPresent(_ type: Swift.Float.Type, forKey key: K) throws -> Swift.Float?
+  public func decodeIfPresent(_ type: Swift.Int.Type, forKey key: K) throws -> Swift.Int?
+  public func decodeIfPresent(_ type: Swift.Int32.Type, forKey key: K) throws -> Swift.Int32?
+  public func decodeIfPresent(_ type: Swift.Int64.Type, forKey key: K) throws -> Swift.Int64?
+  public func decodeIfPresent(_ type: Swift.UInt.Type, forKey key: K) throws -> Swift.UInt?
+  public func decodeIfPresent<T>(_ type: T.Type, forKey key: K) throws -> T? where T : Swift.Decodable
+}
+extension BaseRequest {
+  public var parameters: Any? {
+    get
+  }
+  public var baseURL: Foundation.URL {
+    get
+  }
+  public var method: APIMethod {
+    get
+  }
+  public var headers: [Swift.String : Swift.String]? {
+    get
+  }
+  public var task: Moya.Task {
+    get
+  }
+  public var validationType: Moya.ValidationType {
+    get
+  }
+}
+extension BaseRequest {
+  public var defatulTask: APITask {
+    get
+  }
+}
+extension BaseRequest {
+  public var downloadTask: APITask {
+    get
+  }
+}
+public struct NetworkConfig {
+  public static var timeoutIntervalForRequest: Swift.Double
+  public static var baseURL: Swift.String
+  public static var baseMethod: Alamofire.HTTPMethod
+  public static var baseParameters: Alamofire.Parameters
+  public static var baseHeaders: [Swift.String : Swift.String]
+  public static var basePlugins: [any Moya.PluginType]?
+  public static var interceptor: (any Alamofire.RequestInterceptor)?
+  public static var dateDecodingStrategy: Foundation.JSONDecoder.DateDecodingStrategy
+  public static func updateBaseParametersWithValue(_ value: Swift.AnyObject?, key: Swift.String)
+}
+public protocol InjectionKey {
+  associatedtype Value
+  static var currentValue: Self.Value { get set }
+}
+public struct InjectedValues {
+  public static subscript<K>(key: K.Type) -> K.Value where K : InjectionKey {
+    get
+    set
+  }
+  public static subscript<T>(keyPath: Swift.WritableKeyPath<InjectedValues, T>) -> T {
+    get
+    set
+  }
+}
+@propertyWrapper public struct Injected<T> {
+  public var wrappedValue: T {
+    get
+    set
+  }
+  public init(_ keyPath: Swift.WritableKeyPath<InjectedValues, T>)
+}
+public struct CVCommon {
+}
+extension CVCommon {
+  public struct Screen {
+    public static let bottomSafeAreaInset: CoreFoundation.CGFloat
+    public static let navigationBarHeight: CoreFoundation.CGFloat
+    public static func navStatusHeight() -> CoreFoundation.CGFloat
+    public static func statusBarHeight() -> CoreFoundation.CGFloat
+    public static func statusBarWidth() -> CoreFoundation.CGFloat
+    public static func statusBarSize() -> CoreFoundation.CGSize
+  }
+  public static func keyWindow() -> UIKit.UIWindow?
+}
+extension CVCommon {
+  public static func sdkBundle(for aClass: Swift.AnyClass) -> Foundation.Bundle?
+  public static func changeImageColor(image: UIKit.UIImage?, color: UIKit.UIColor) -> UIKit.UIImage?
+}
+public struct LocalizationVersionModel {
+  public let version: Swift.String
+  public let tenantCode: Swift.String
+}
+extension Foundation.Bundle {
+  public static func cv_swizzleLocalization()
+  @objc dynamic public func lokalise_localizedString(forKey key: Swift.String, value: Swift.String?, table tableName: Swift.String?) -> Swift.String
+}
+@_hasMissingDesignatedInitializers public class LocalizationManager {
+  public static let shared: LocalizationManager
+  public var localizableBundle: Foundation.Bundle?
+  public func updateLocalizationIfNeeded(tenantCode: Swift.String, completion: @escaping (Swift.String?, (any Swift.Error)?) -> Swift.Void)
+  @objc deinit
+}
+public struct LocalizationConfig {
+  public static var storageFolderName: Swift.String
+  public static var serverBaseURL: Swift.String
+  public static var versionCheckURL: Swift.String {
+    get
+  }
+  public static var downloadURL: Swift.String {
+    get
+  }
+}
+extension Swift.Encodable {
+  public func toJsonObject() throws -> [Swift.String : Any]
+  public func toJsonString() throws -> Swift.String?
+}
+extension Swift.Dictionary {
+  public func decode<T>(to type: T.Type) -> T? where T : Swift.Decodable
+}
+extension Swift.String {
+  public func decode<T>(to type: T.Type) -> T? where T : Swift.Decodable
+}
+public struct NetworkWrapper<Base> {
+}
+public protocol NetworkCompatible : AnyObject {
+}
+public protocol NetworkCompatibleValue {
+}
+extension NetworkCompatible {
+  public var cv: NetworkWrapper<Self> {
+    get
+    set
+  }
+}
+extension NetworkCompatibleValue {
+  public var cv: NetworkWrapper<Self> {
+    get
+    set
+  }
+}
+public protocol BaseRequest : NetworkCompatibleValue, Moya.TargetType {
+  var baseURL: Foundation.URL { get }
+  var path: Swift.String { get }
+  var headers: [Swift.String : Swift.String]? { get }
+  var method: APIMethod { get }
+  var parameters: Any? { get }
+}
+public protocol HasCancellable : AnyObject {
+}
+extension HasCancellable {
+  public var disposeBag: Swift.Set<Combine.AnyCancellable> {
+    get
+    set
+  }
+}
+extension Swift.String : CVCompatibleValue {
+}
+extension CVWrapper where Base == Swift.String {
+  public var localized: Swift.String {
+    get
+  }
+  public func localizedFormat(arguments: any Swift.CVarArg...) -> Swift.String
+  public func localizedPlural(argument: any Swift.CVarArg) -> Swift.String
+}
+@_hasMissingDesignatedInitializers public class GlobalConfig {
+  public static let shared: GlobalConfig
+  public var localizableBundle: Foundation.Bundle
+  public var localizedUntranslatedEnglishDisplay: Swift.Bool
+  public var token: Swift.String?
+  @objc deinit
+}
