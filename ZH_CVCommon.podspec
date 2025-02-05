@@ -27,7 +27,7 @@ Pod::Spec.new do |spec|
   spec.swift_version = '5.0'
 
   spec.source       = { :git => "https://github.com/841766048/ZH_CVCommon.git", :tag => "#{spec.version}" }
-  spec.preserve_paths = 'CVCommon.xcframework/**/*'
+  # spec.preserve_paths = 'CVCommon.xcframework/**/*'
 
   # 封装的framework名称
   spec.ios.vendored_frameworks = 'CVCommon.xcframework'
@@ -41,13 +41,16 @@ Pod::Spec.new do |spec|
   spec.dependency 'Localize-Swift', '~> 3.2'
   spec.dependency 'SSZipArchive'
 
+  # spec.frameworks = 'Combine', 'UIKit', 'Foundation'
   # 工程配置
   spec.user_target_xcconfig = { 'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES' }
   spec.pod_target_xcconfig = { 'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES' }
   # Xcode构建配置优化
-  spec.pod_target_xcconfig = {
-    'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',  # 二进制兼容Swift 
-    'SWIFT_COMPILATION_MODE' => 'wholemodule',  # 提升编译效率
-    'GCC_WARN_INHIBIT_ALL_WARNINGS' => 'NO'     # 显示所有警告
-  }
+  # spec.pod_target_xcconfig = {
+  #   'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',  # 二进制兼容Swift 
+  #   'SWIFT_COMPILATION_MODE' => 'wholemodule',  # 提升编译效率
+  #   'GCC_WARN_INHIBIT_ALL_WARNINGS' => 'NO'     # 显示所有警告
+  # }
+
+
 end
