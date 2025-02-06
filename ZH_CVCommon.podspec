@@ -22,7 +22,7 @@ Pod::Spec.new do |spec|
   spec.license      = { :type => "MIT", :file => "/Users/zhanghaibin/Documents/马甲包/ZH_CVCommon/LICENSE" }
 
   spec.author             = { "mard002" => "841766048@qq.com" }
-   # 开发平台，当时我们设置的是13.0
+
   spec.ios.deployment_target = "14.0"
   spec.swift_version = '5.0'
 
@@ -46,11 +46,11 @@ Pod::Spec.new do |spec|
   spec.user_target_xcconfig = { 'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES' }
   spec.pod_target_xcconfig = { 'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES' }
   # Xcode构建配置优化
-  # spec.pod_target_xcconfig = {
-  #   'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',  # 二进制兼容Swift 
-  #   'SWIFT_COMPILATION_MODE' => 'wholemodule',  # 提升编译效率
-  #   'GCC_WARN_INHIBIT_ALL_WARNINGS' => 'NO'     # 显示所有警告
-  # }
+  spec.pod_target_xcconfig = {
+    'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',  # 二进制兼容Swift 
+    'SWIFT_COMPILATION_MODE' => 'wholemodule',  # 提升编译效率
+    'GCC_WARN_INHIBIT_ALL_WARNINGS' => 'NO'     # 显示所有警告
+  }
 
 
 end
