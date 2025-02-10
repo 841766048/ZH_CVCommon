@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   # 仓库名称
   spec.name         = "ZH_CVCommon"
   # 仓库版本
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   # 描述
   spec.summary      = "ZH_CVCommon 测试工程文件，到期会进行删除"
 
