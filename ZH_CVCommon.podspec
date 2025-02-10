@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
 
   spec.author             = { "mard002" => "841766048@qq.com" }
 
-  spec.ios.deployment_target = "14.0"
+  spec.ios.deployment_target = "15.1"
   spec.swift_version = '5.0'
 
   spec.source       = { :git => "https://github.com/841766048/ZH_CVCommon.git", :tag => "#{spec.version}" }
