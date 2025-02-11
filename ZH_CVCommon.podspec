@@ -45,6 +45,16 @@ Pod::Spec.new do |spec|
   # 工程配置
   spec.user_target_xcconfig = { 'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES' }
   spec.pod_target_xcconfig = { 'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES' }
+ # 统一配置编译选项
+  spec.pod_target_xcconfig = {
+    'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',
+    'IPHONEOS_DEPLOYMENT_TARGET' => '15.1',
+    'SWIFT_OPTIMIZATION_LEVEL' => '-Onone'
+  }
+  
+  spec.user_target_xcconfig = {
+    'IPHONEOS_DEPLOYMENT_TARGET' => '15.1'
+  }
   # Xcode构建配置优化
   # spec.pod_target_xcconfig = {
   #   'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',  # 二进制兼容Swift 
